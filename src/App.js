@@ -12,6 +12,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import LinearProgress from "@material-ui/core/LinearProgress";
 import {connect} from "react-redux";
 import {setError, setLoading} from "./app/action";
+//test
 
 
 const useStyles = makeStyles((theme) => ({
