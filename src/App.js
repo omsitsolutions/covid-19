@@ -1,15 +1,5 @@
 import React, {useState} from 'react';
-import {
-    AppBar,
-    BottomNavigation,
-    BottomNavigationAction,
-    Grid,
-    Icon,
-    IconButton,
-    Toolbar,
-    Snackbar,SnackbarContent,
-    Typography
-} from "@material-ui/core";
+import {    AppBar,BottomNavigation,BottomNavigationAction,Grid,Icon,IconButton,Toolbar,Snackbar,SnackbarContent,Typography} from "@material-ui/core";
 import {Route, Switch, useHistory} from "react-router-dom";
 import Global from "./component/Global";
 import India from "./component/India";
@@ -22,7 +12,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import LinearProgress from "@material-ui/core/LinearProgress";
 import {connect} from "react-redux";
 import {setError, setLoading} from "./app/action";
-//test
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
