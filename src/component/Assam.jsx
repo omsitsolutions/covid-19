@@ -16,10 +16,10 @@ import {Panel} from "./Panel";
 import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress"
 
-const mapStateToProps = state => ({loading: state.isLoadingIndia, india: state.india, summary: state.indiaSummary})
+const mapStateToProps = state => ({loading: state.isLoadingIndia, assam: state.assam, summary: state.assamSummary})
 const mapDispatchToProps = {fetchAssam}
 
-const Assam = ({loading, india = {}, fetchAssam, summary}) => {
+const Assam = ({loading, assam = {}, fetchAssam, summary}) => {
     useEffect(() => {
         fetchAssam()
     }, [])
@@ -47,53 +47,44 @@ const Assam = ({loading, india = {}, fetchAssam, summary}) => {
                     <Panel icon={"accessible"} caption={"Confirmed case"} title={summary.confirmed}/>
 
                 </Grid>
-                <Grid xs={4} item={true}>
-                    <Panel icon={"sentiment_very_dissatisfied"} caption={"Deaths"} title={summary.deaths}/>
 
-                </Grid>
                 <Grid xs={4} item={true}>
                     <Panel icon={"healing"} caption={"Recovered"} title={summary.recovered}/>
 
                 </Grid>
+                <Grid xs={4} item={true}>
+                    <Panel icon={"sentiment_very_dissatisfied"} caption={"Deceased"} title={summary.deaths}/>
+
+                </Grid>
             </Grid>
-            {Array.isArray(india) && india.map(state => (
-                <ExpansionPanel key={state.State}>
+            {Array.isArray(assam) && assam.map(state => (
+                <ExpansionPanel key={state.district}>
                     <ExpansionPanelSummary
-                        expandIcon={<ExpandMoreIcon/>}
+
                         aria-controls="panel1c-content"
                         id="panel1c-header"
                     >
-                        <Typography style={{flex: 1}}>{state.state}</Typography>
+                        <Typography style={{flex: 0.75}}>{state.district}</Typography>
 
-                        <div>
-                            <Typography>Confirmed Case</Typography>
+                        <div style={{flex: 0.1}}>
+                            <Typography>Confirmed </Typography>
                             <Chip color={"primary"} label={state.confirmed}/>
+                        </div>
+                        <div style={{flex: 0.1}}>
+                            <Typography>Recovered </Typography>
+                            <Chip color={"primary"} label={state.recovered}/>
+                        </div>
+                        <div>
+                            <Typography>Deceased </Typography>
+                            <Chip color={"primary"} label={state.deaths}/>
                         </div>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
 
                         <List style={{flex: 1}} title={"District wise"} subheader={"District wise"}>
-                            {state.districts.map(d => (
-                                //need key here also
-                                <ListItem key={d.name}>
-                                    <ListItemText primary={d.name}
-                                                  secondary={`Death: ${d.deceased}  Recovered : ${d.recovered}`}/>
-                                    <ListItemSecondaryAction>
-                                        <Chip color={"primary"} label={`Confirmed: ${new Intl.NumberFormat("en-IN",{maximumSignificantDigits:3}).format(d.confirmed)}`}/>
-                                    </ListItemSecondaryAction>
-                                </ListItem>
-                            ))}
+
                         </List>
 
-                        {/*<div>*/}
-                        {/*    <Typography>Country: {state.Country}</Typography>*/}
-                        {/*</div>*/}
-
-                        {/*<div>*/}
-                        {/*    <Typography>Confirmed Case : {state.TotalConfirmed}</Typography>*/}
-                        {/*    <Typography>Deaths : {state.TotalDeaths}</Typography>*/}
-                        {/*    <Typography>Recovered : {state.TotalRecovered}</Typography>*/}
-                        {/*</div>*/}
 
                     </ExpansionPanelDetails>
                     <Divider/>

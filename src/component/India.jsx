@@ -14,9 +14,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import {Panel} from "./Panel";
 import Grid from "@material-ui/core/Grid";
-import CircularProgress from "@material-ui/core/CircularProgress"
 
-const mapStateToProps = state => ({loading: state.isLoadingIndia, india: state.india, summary: state.indiaSummary})
+const mapStateToProps = state => ({loading: state.loading, india: state.india, summary: state.indiaSummary})
 const mapDispatchToProps = {fetchIndia}
 
 const India = ({loading, india = {}, fetchIndia, summary}) => {
@@ -24,81 +23,64 @@ const India = ({loading, india = {}, fetchIndia, summary}) => {
         fetchIndia()
     }, [])
 
-    if(loading === true) {
-        return (
-            <Grid 
-                container={true}
-                spacing={10}
-                direction="column"
-                alignItems="center"
-                justify="center"
-                //minHeight 100vh is too low
-                style={{ minHeight: '50vh'}}
-            >
-                <CircularProgress size={60}/>
-            </Grid>
-        )
+    if (loading === true) {
+        return null
     }
     return (
         <>
-            <Grid container={true}>
-
-                <Grid xs={4} item={true}>
-                    <Panel icon={"accessible"} caption={"Confirmed case"} title={summary.confirmed}/>
-
+            <Grid spacing={2} container={true}>
+                <Grid item xs={12} sm={12} md={12}>
+                    <Grid spacing={2} container={true}>
+                        <Grid container={true} xs={4} item={true}>
+                            {!loading && <Panel icon={"accessible"} caption={"Confirmed case"} title={summary.confirmed}/> }
+                        </Grid>
+                        <Grid xs={4} container={true} item={true}>
+                            {!loading && <Panel icon={"sentiment_very_dissatisfied"} caption={"Deaths"} title={summary.deaths}/> }
+                        </Grid>
+                        <Grid xs={4} container={true} item={true}>
+                            {!loading && <Panel icon={"healing"} caption={"Recovered"} title={summary.recovered}/>}
+                        </Grid>
+                    </Grid>
                 </Grid>
-                <Grid xs={4} item={true}>
-                    <Panel icon={"sentiment_very_dissatisfied"} caption={"Deaths"} title={summary.deaths}/>
+                <Grid item xs={12} sm={12} md={12}>
+                    {Array.isArray(india) && india.map(state => (
+                        <ExpansionPanel key={state.State}>
+                            <ExpansionPanelSummary
+                                expandIcon={<ExpandMoreIcon/>}
+                                aria-controls="panel1c-content"
+                                id="panel1c-header"
+                            >
+                                <Typography style={{flex: 1}}>{state.state}</Typography>
 
-                </Grid>
-                <Grid xs={4} item={true}>
-                    <Panel icon={"healing"} caption={"Recovered"} title={summary.recovered}/>
+                                <div>
+                                    <Typography>Confirmed Case</Typography>
+                                    <Chip color={"primary"} label={state.confirmed}/>
+                                </div>
+                            </ExpansionPanelSummary>
+                            <ExpansionPanelDetails>
 
+                                <List style={{flex: 1}} title={"District wise"} subheader={"District wise"}>
+                                    {state.districts.map(d => (
+                                        //need key here also
+                                        <ListItem key={d.name}>
+                                            <ListItemText primary={d.name}
+                                                          secondary={`Death: ${d.deceased}  Recovered : ${d.recovered}`}/>
+                                            <ListItemSecondaryAction>
+                                                <Chip color={"primary"}
+                                                      label={`Confirmed: ${new Intl.NumberFormat("en-IN", {maximumSignificantDigits: 3}).format(d.confirmed)}`}/>
+                                            </ListItemSecondaryAction>
+                                        </ListItem>
+                                    ))}
+                                </List>
+
+
+                            </ExpansionPanelDetails>
+                            <Divider/>
+                        </ExpansionPanel>
+                    ))}
                 </Grid>
             </Grid>
-            {Array.isArray(india) && india.map(state => (
-                <ExpansionPanel key={state.State}>
-                    <ExpansionPanelSummary
-                        expandIcon={<ExpandMoreIcon/>}
-                        aria-controls="panel1c-content"
-                        id="panel1c-header"
-                    >
-                        <Typography style={{flex: 1}}>{state.state}</Typography>
 
-                        <div>
-                            <Typography>Confirmed Case</Typography>
-                            <Chip color={"primary"} label={state.confirmed}/>
-                        </div>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
-
-                        <List style={{flex: 1}} title={"District wise"} subheader={"District wise"}>
-                            {state.districts.map(d => (
-                                //need key here also
-                                <ListItem key={d.name}>
-                                    <ListItemText primary={d.name}
-                                                  secondary={`Death: ${d.deceased}  Recovered : ${d.recovered}`}/>
-                                    <ListItemSecondaryAction>
-                                        <Chip color={"primary"} label={`Confirmed: ${new Intl.NumberFormat("en-IN",{maximumSignificantDigits:3}).format(d.confirmed)}`}/>
-                                    </ListItemSecondaryAction>
-                                </ListItem>
-                            ))}
-                        </List>
-
-                        {/*<div>*/}
-                        {/*    <Typography>Country: {state.Country}</Typography>*/}
-                        {/*</div>*/}
-
-                        {/*<div>*/}
-                        {/*    <Typography>Confirmed Case : {state.TotalConfirmed}</Typography>*/}
-                        {/*    <Typography>Deaths : {state.TotalDeaths}</Typography>*/}
-                        {/*    <Typography>Recovered : {state.TotalRecovered}</Typography>*/}
-                        {/*</div>*/}
-
-                    </ExpansionPanelDetails>
-                    <Divider/>
-                </ExpansionPanel>
-            ))}
         </>
     )
 }

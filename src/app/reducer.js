@@ -1,62 +1,52 @@
 import {
-    FETCH_GLOBAL_REQUEST,
-    FETCH_GLOBAL_SUCCESS,
-    FETCH_GLOBAL_FAILURE,
-    FETCH_INDIA_REQUEST,
-    FETCH_INDIA_SUCCESS,
-    FETCH_INDIA_FAILURE,
+    ERROR,
+    FETCH_GLOBAL, FETCH_INDIA,FETCH_ASSAM,
+    LOADING
 } from "./action";
 
-const initialState={
+const initialState = {
     global: [],
-    globalSummary:{},
-    indiaSummary:{},
-    india:[],
-    isLoadingGlobal: true,
-    isLoadingIndia: true,
-    isLoadingGlobalError: "",
-    isLoadingIndiaError: ""
+    globalSummary: {},
+    indiaSummary: {},
+    assamSummary:{},
+    assam: [],
+    india: [],
+    loading: false,
+    error:null
 }
-export const reducer=(state=initialState,action)=>{
+export const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case LOADING:
+            return {...state, loading: action.payload}
         //GLOBAL
-        case FETCH_GLOBAL_REQUEST:
-            return {
-                ...state,
-                isLoadingGlobal: true
-            }
-        case FETCH_GLOBAL_SUCCESS:
+
+        case ERROR:
+            return {...state,error:action.payload}
+        case FETCH_GLOBAL:
             // console.log("data",action.payload)
             return {
                 ...state,
-                isLoadingGlobal: false,
-                global:action.payload.Countries,
-                globalSummary:action.payload.Global
+                global: action.payload.Countries,
+                globalSummary: action.payload.Global
             }
-        case FETCH_GLOBAL_FAILURE:
-            return {
-                ...state,
-                isLoadingGlobalError: action.payload
-            }
-        
+
         //INDIA
-        case FETCH_INDIA_REQUEST:
-            return {
-                ...state,
-                isLoadingIndia: true
-            }
-        case FETCH_INDIA_SUCCESS:
+        case FETCH_INDIA:
             return {
                 ...state,
                 isLoadingIndia: false,
-                india:action.payload.data,
-                indiaSummary:action.payload.summary
+                india: action.payload.data,
+                indiaSummary: action.payload.summary
             }
-            case FETCH_INDIA_FAILURE:
-                return {
-                    ...state,
-                    isLoadingIndiaError: action.payload
-                }
+
+        case FETCH_ASSAM:
+            return {
+                ...state,
+                isLoadingIndia: false,
+                assam: action.payload.data,
+                assamSummary: action.payload.summary
+            }
+
         default:
             return initialState;
 
