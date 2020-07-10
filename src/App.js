@@ -99,7 +99,7 @@ function App({loading,error,setError}) {
                         </Typography>
                         <IconButton color={"inherit"} href={""} target={"_blank"}
                                     onClick={e => window.open("https://g.page/omsitsolutions", "_blank")}>
-                            <Icon fontSize={"default"} className="fa fa-github"/>
+                            <Icon fontSize={"default"} className="fa fa-google"/>
                         </IconButton>
                     </Toolbar>
                     {loading && <LinearProgress color={"secondary"} variant="indeterminate"/>}
