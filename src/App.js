@@ -12,6 +12,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import LinearProgress from "@material-ui/core/LinearProgress";
 import {connect} from "react-redux";
 import {setError, setLoading} from "./app/action";
+import logo from "./logo.jpg";
 
 
 
@@ -97,7 +98,7 @@ function App({loading,error,setError}) {
                         </Typography>
                         <IconButton color={"inherit"} href={""} target={"_blank"}
                                     onClick={e => window.open("https://g.page/omsitsolutions", "_blank")}>
-                            <Icon fontSize={"default"} className="fa fa-google"/>
+                            <img src={logo} alt="Logo" />
                         </IconButton>
                     </Toolbar>
                     {loading && <LinearProgress color={"secondary"} variant="indeterminate"/>}
