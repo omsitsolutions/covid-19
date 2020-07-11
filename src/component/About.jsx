@@ -19,10 +19,17 @@ export const About = (props) => {
                             <Icon fontSize={"default"} className="fa fa-facebook-f"/>
                         </IconButton>
                         <IconButton color={"primary"} href={""} target={"_blank"} onClick={e=>{
+                            window.open("http://omsitsolutions.com","_blank")
+                        }}>
+                            <Icon fontSize={"default"} className="fa fa-globe"/>
+                          </IconButton>
+                        <IconButton color={"primary"} href={""} target={"_blank"} onClick={e=>{
                             window.open("https://g.page/omsitsolutions","_blank")
                         }}>
                             <Icon fontSize={"default"} className="fa fa-google"/>
                         </IconButton>
+
+                        
                     </CardContent>
                 </Card>
             </Grid>
