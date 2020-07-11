@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {    AppBar,BottomNavigation,BottomNavigationAction,Grid,Icon,IconButton,Toolbar,Snackbar,SnackbarContent,Typography} from "@material-ui/core";
-import {Route, Switch, useHistory} from "react-router-dom";
+import {Route, Switch,Link, useHistory} from "react-router-dom";
 import Global from "./component/Global";
 import India from "./component/India";
 import Assam from "./component/Assam";
@@ -12,7 +12,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import LinearProgress from "@material-ui/core/LinearProgress";
 import {connect} from "react-redux";
 import {setError, setLoading} from "./app/action";
-//test
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -51,15 +51,19 @@ const BottomNav = () => {
                 onChange={(event, newValue) => {
                     switch (newValue) {
                         case 0:
+                            console.log("/assam");
                             history.push("/assam");
                             break;
                         case 1:
+                            console.log("/india");
                             history.push("/india");
                             break;
                         case 2:
+                            console.log("/global");
                             history.push("/global");
                             break
                         case 3:
+                            console.log("/about");
                             history.push("/about");
                             break
                     }
@@ -71,6 +75,7 @@ const BottomNav = () => {
                 <BottomNavigationAction label="India" icon={<PinIcon/>}/>
                 <BottomNavigationAction label="Global" icon={<WorldIcon/>}/>
                 <BottomNavigationAction label="About" icon={<InfoIcon/>}/>
+
             </BottomNavigation>
         </AppBar>
     )
@@ -82,6 +87,7 @@ function App({loading,error,setError}) {
     const classes = useStyles();
 
     return (
+
         <Grid spacing={4} container={true}>
             <Grid sm={12} md={12} xs={12} style={{flexGrow: 1}} item={true}>
                 <AppBar position={"fixed"}>
@@ -98,11 +104,16 @@ function App({loading,error,setError}) {
                 </AppBar>
             </Grid>
             <Grid xs={12} sm={12} md={12} lg={12} style={{marginTop: 50, marginBottom: 50}} item={true}>
+
                 <Switch>
-                    <Route exact={true} path={"/"} component={Assam}/>
+
+
+                    <Route exact={true} path={"/assam"} component={Assam}/>
                     <Route exact={true} path={"/india"} component={India}/>
                     <Route exact={true} path={"/global"} component={Global}/>
                     <Route exact={true} path={"/about"} component={About}/>
+                    <Route exact={true} path={""} component={Assam}/>
+
                 </Switch>
             </Grid>
 
@@ -130,6 +141,7 @@ function App({loading,error,setError}) {
 
             </Grid>
         </Grid>
+
     );
 }
 
