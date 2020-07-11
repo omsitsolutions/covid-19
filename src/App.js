@@ -97,7 +97,7 @@ function App({loading,error,setError}) {
                             COVID-19 Tracker
                         </Typography>
                         <IconButton color={"inherit"} href={""} target={"_blank"}
-                                    onClick={e => window.open("https://g.page/omsitsolutions", "_blank")}>
+                                    onClick={e => window.open("https://www.facebook.com/omsitsolutions", "_blank")}>
                             <img src={logo} alt="Logo" />
                         </IconButton>
                     </Toolbar>
