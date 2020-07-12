@@ -52,19 +52,15 @@ const BottomNav = () => {
                 onChange={(event, newValue) => {
                     switch (newValue) {
                         case 0:
-                            console.log("/assam");
                             history.push("/assam");
                             break;
                         case 1:
-                            console.log("/india");
                             history.push("/india");
                             break;
                         case 2:
-                            console.log("/global");
                             history.push("/global");
                             break
                         case 3:
-                            console.log("/about");
                             history.push("/about");
                             break
                     }
@@ -94,10 +90,10 @@ function App({loading,error,setError}) {
                 <AppBar position={"fixed"}>
                     <Toolbar>
                         <Typography variant="h6" className={classes.title}>
-                            COVID-19 Tracker
+                            COVID-19 Dashboard
                         </Typography>
                         <IconButton color={"inherit"} href={""} target={"_blank"}
-                                    onClick={e => window.open("https://www.facebook.com/omsitsolutions", "_blank")}>
+                                    onClick={e => window.open("http://omsitsolutions.com", "_blank")}>
                             <img src={logo} alt="Logo" />
                         </IconButton>
                     </Toolbar>

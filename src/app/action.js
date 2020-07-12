@@ -28,6 +28,9 @@ export const fetchGlobal = () => {
         dispatch({type: LOADING,payload:true})
         axios.get(ROOT_API + "/summary")
             .then(res => {
+              res.data.Countries.sort(function(a, b) {
+  return b.TotalConfirmed - a.TotalConfirmed;
+});
                 dispatch({type: FETCH_GLOBAL, payload: res.data})
             })
             .catch(err => {
@@ -76,6 +79,9 @@ export const fetchIndia = () => {
                     deaths,
                     recovered
                 }
+                data.sort(function(a, b) {
+    return b.confirmed - a.confirmed;
+});
                 dispatch({type: FETCH_INDIA, payload: {data, summary}})
             })
             .catch(err => {
@@ -94,12 +100,12 @@ export const fetchAssam = () => {
         axios.get(INDIA_API)
             .then(res => {
               console.log('Testing log feature in React');
-              console.log(res.data);
-              console.log(res.data.Assam);
-              console.log(res.data.Assam.districtData);
-              console.log(res.data.Assam.districtData.Sonitpur);
-              console.log(res.data.Assam.districtData.Sonitpur.confirmed);
-              console.log(Object.keys(res.data));
+              // console.log(res.data);
+              // console.log(res.data.Assam);
+              // console.log(res.data.Assam.districtData);
+              // console.log(res.data.Assam.districtData.Sonitpur);
+              // console.log(res.data.Assam.districtData.Sonitpur.confirmed);
+              // console.log(Object.keys(res.data));
               //const data = Object.keys(res.data.Assam);
                 const data = Object.keys(res.data.Assam.districtData).map(function(district)  {
 
@@ -134,6 +140,9 @@ export const fetchAssam = () => {
                     deaths,
                     recovered
                 }
+                data.sort(function(a, b) {
+    return b.confirmed - a.confirmed;
+});
                 dispatch({type: FETCH_ASSAM, payload: {data, summary}})
             })
             .catch(err => {

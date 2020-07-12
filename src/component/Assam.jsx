@@ -81,7 +81,7 @@ const Assam = ({loading, assam = {}, fetchAssam, summary}) => {
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
 
-                        <List style={{flex: 1}} title={"District wise"} subheader={"District wise"}>
+                        <List style={{flex: 1}} title={"District wise"} subheader={"Places"}>
 
                         </List>
 
