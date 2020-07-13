@@ -32,13 +32,13 @@ const India = ({loading, india = {}, fetchIndia, summary}) => {
                 <Grid item xs={12} sm={12} md={12}>
                     <Grid spacing={2} container={true}>
                         <Grid container={true} xs={4} item={true}>
-                            {!loading && <Panel icon={"accessible"} caption={"Confirmed case"} title={summary.confirmed}/> }
+                            {!loading && <Panel icon={"accessible"} caption={"Confirmed case"} title={summary.confirmed} percent={summary.confirmed *100/1380004385}/> }
                         </Grid>
                         <Grid xs={4} container={true} item={true}>
-                            {!loading && <Panel icon={"sentiment_very_dissatisfied"} caption={"Deaths"} title={summary.deaths}/> }
+                            {!loading && <Panel icon={"healing"} caption={"Recovered"} title={summary.recovered} percent={summary.recovered *100/summary.confirmed}/>}
                         </Grid>
                         <Grid xs={4} container={true} item={true}>
-                            {!loading && <Panel icon={"healing"} caption={"Recovered"} title={summary.recovered}/>}
+                            {!loading && <Panel icon={"sentiment_very_dissatisfied"} caption={"Deaths"} title={summary.deaths} percent={summary.deaths *100/summary.confirmed} /> }
                         </Grid>
                     </Grid>
                 </Grid>

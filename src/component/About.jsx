@@ -29,7 +29,7 @@ export const About = (props) => {
                             <Icon fontSize={"default"} className="fa fa-google"/>
                         </IconButton>
 
-                        
+
                     </CardContent>
                 </Card>
             </Grid>
@@ -44,6 +44,11 @@ export const About = (props) => {
                             https://material-ui.com
                         </Link>
                         </Typography>
+                        <Typography   variant={"subtitle1"}>COVID19 INDIA ORG: <Link href="https://www.covid19india.org/">
+                            https://www.covid19india.org
+                        </Link>
+                        </Typography>
+                      
                     </CardContent>
                 </Card>
             </Grid>

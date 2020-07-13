@@ -30,13 +30,14 @@ const styles={
 //         </Card>
 //     )
 // }
-export const Panel=({icon,title,caption})=>{
+export const Panel=({icon,title,caption,percent})=>{
     return (
         //elevation 0 makes it look more equal in height due to no shadows
         <Paper  style={styles.root}>
             <Icon color={"primary"} fontSize={"large"}>{icon}</Icon>
             <Typography variant={"h6"}>{new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(title)}</Typography>
             <Typography variant={"caption"}>{caption}</Typography>
+            <Typography color={"secondary"} display={"inline"} variant={"caption"}>{new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(percent)}%</Typography>
         </Paper>
     )
 }

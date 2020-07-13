@@ -44,16 +44,16 @@ const Assam = ({loading, assam = {}, fetchAssam, summary}) => {
             <Grid container={true}>
 
                 <Grid xs={4} item={true}>
-                    <Panel icon={"accessible"} caption={"Confirmed case"} title={summary.confirmed}/>
+                    <Panel icon={"accessible"} caption={"Confirmed case"} title={summary.confirmed} percent={summary.confirmed *100/35080827}/>
 
                 </Grid>
 
                 <Grid xs={4} item={true}>
-                    <Panel icon={"healing"} caption={"Recovered"} title={summary.recovered}/>
+                    <Panel icon={"healing"} caption={"Recovered"} title={summary.recovered} percent={summary.recovered *100/summary.confirmed}/>
 
                 </Grid>
                 <Grid xs={4} item={true}>
-                    <Panel icon={"sentiment_very_dissatisfied"} caption={"Deceased"} title={summary.deaths}/>
+                    <Panel icon={"sentiment_very_dissatisfied"} caption={"Deceased"} title={summary.deaths} percent={summary.deaths *100/summary.confirmed}/>
 
                 </Grid>
             </Grid>

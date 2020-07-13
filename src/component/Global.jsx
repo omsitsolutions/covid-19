@@ -35,13 +35,13 @@ function Global({loading, fetchGlobalData, global = [], summary}) {
             <Grid item={true}  sm={12} md={12} xs={12}>
                 <Grid spacing={2} container={true}>
                     <Grid container item xs={4} sm={4} md={4}>
-                        <Panel icon={"accessible"} caption={"Confirmed case"} title={summary.TotalConfirmed}/>
-                    </Grid>
-                    <Grid container item xs={4} sm={4} md={4}>
-                        <Panel icon={"sentiment_very_dissatisfied"} caption={"Deaths"} title={summary.TotalDeaths}/>
+                        <Panel icon={"accessible"} caption={"Confirmed case"} title={summary.TotalConfirmed} percent={summary.TotalConfirmed *100/7800000000}/>
                     </Grid>
                     <Grid container={true} item xs={4} sm={4} md={4}>
-                        <Panel icon={"healing"} caption={"Recovered"} title={summary.TotalRecovered}/>
+                        <Panel icon={"healing"} caption={"Recovered"} title={summary.TotalRecovered} percent={summary.TotalRecovered *100/summary.TotalConfirmed}/>
+                    </Grid>
+                    <Grid container item xs={4} sm={4} md={4}>
+                        <Panel icon={"sentiment_very_dissatisfied"} caption={"Deaths"} title={summary.TotalDeaths} percent={summary.TotalDeaths *100/summary.TotalConfirmed}/>
                     </Grid>
                 </Grid>
             </Grid>
