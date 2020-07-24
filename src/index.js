@@ -7,7 +7,10 @@ import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from "react-router-dom";
 import {MuiThemeProvider} from "@material-ui/core";
 import theme from "./app/theme";
+import ReactGA from 'react-ga';
 
+ReactGA.initialize('UA-173481698-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
