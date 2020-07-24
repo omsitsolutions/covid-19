@@ -47,7 +47,6 @@ const Assam = ({loading, assam = {}, fetchAssam, summary}) => {
                     <Panel icon={"accessible"} caption={"Confirmed case"} title={summary.confirmed} percent={summary.confirmed *100/35080827}/>
 
                 </Grid>
-
                 <Grid xs={4} item={true}>
                     <Panel icon={"healing"} caption={"Recovered"} title={summary.recovered} percent={summary.recovered *100/summary.confirmed}/>
 

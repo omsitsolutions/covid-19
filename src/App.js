@@ -13,6 +13,9 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import {connect} from "react-redux";
 import {setError, setLoading} from "./app/action";
 import logo from "./logo.jpg";
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-173481698-1');
 
 
 
@@ -80,7 +83,7 @@ const BottomNav = () => {
 
 
 function App({loading,error,setError}) {
-
+ReactGA.pageview(window.location.pathname + window.location.search);
     const classes = useStyles();
 
     return (

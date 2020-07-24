@@ -2,6 +2,7 @@ import React from "react";
 import {Card,Avatar,Link, CardContent, CardHeader, Divider, Grid, Icon, IconButton, Typography} from "@material-ui/core";
 
 
+
 export const About = (props) => {
     return (
         <Grid spacing={true} container={true}>
@@ -48,7 +49,7 @@ export const About = (props) => {
                             https://www.covid19india.org
                         </Link>
                         </Typography>
-                      
+
                     </CardContent>
                 </Card>
             </Grid>
